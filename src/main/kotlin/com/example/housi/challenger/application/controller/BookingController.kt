@@ -16,7 +16,7 @@ import java.time.LocalDate
 @RequestMapping("/properties")
 class BookingController(val getUnavailableDateUsecase: GetUnavailableDateUsecase): BookingRoutes {
 
-    override fun getBusyDates(@PathVariable(required = true) id:String,
+    override fun getBusyDates(@PathVariable(required = true) id: String,
                      @RequestParam(required = false) start: String?,
                      @RequestParam(required = false) end:String?): List<LocalDate> {
 
@@ -24,7 +24,6 @@ class BookingController(val getUnavailableDateUsecase: GetUnavailableDateUsecase
             val searchPeriod = SearchPeriodDTO(LocalDate.parse(start), LocalDate.parse(end))
 
             if (searchPeriod.start.isAfter(searchPeriod.end)) throw LocalDateException("End date cannot be smaller than start")
-
             return getUnavailableDateUsecase.findByPeriod(id, searchPeriod)
         }
         return getUnavailableDateUsecase.findAll(id)
