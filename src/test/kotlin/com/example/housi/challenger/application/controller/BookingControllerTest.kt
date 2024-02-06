@@ -1,5 +1,6 @@
 package com.example.housi.challenger.application.controller
 
+import com.example.housi.challenger.application.controller.BookingController
 import com.example.housi.challenger.application.entity.Booking
 import com.example.housi.challenger.application.entity.Property
 import com.example.housi.challenger.application.entity.Resident
@@ -34,10 +35,16 @@ class BookingControllerTest {
         )
     )
 
+    val blockedDates = listOf<LocalDate>(
+        LocalDate.parse("2024-02-01"),
+        LocalDate.parse("2024-02-02"),
+        LocalDate.parse("2024-02-03")
+    )
+
     @Test
     fun `Should get bookings by property id`(){
         val listBooking = listOf(bookings)
-        every { getUnavailableDateUsecase.findById(any()) } returns listBooking
+        every { getUnavailableDateUsecase.findById(id) } returns listBooking
 
         val bookListMocked = bookingController.getById(id)
 
@@ -49,12 +56,6 @@ class BookingControllerTest {
         val start= "2024-02-01"
         val end= "2024-02-06"
 
-        val blockedDates = listOf<LocalDate>(
-            LocalDate.parse("2024-02-01"),
-            LocalDate.parse("2024-02-02"),
-            LocalDate.parse("2024-02-03")
-        )
-
         every { getUnavailableDateUsecase.findByPeriod(id, any()) } returns blockedDates
         val result = bookingController.getBusyDates(id, start, end)
 
@@ -63,14 +64,7 @@ class BookingControllerTest {
 
     @Test
     fun `Should get blocked dates with no date provided`(){
-        val blockedDates = listOf<LocalDate>(
-            LocalDate.parse("2024-02-01"),
-            LocalDate.parse("2024-02-02"),
-            LocalDate.parse("2024-02-03")
-        )
-
-
-        every { getUnavailableDateUsecase.findAll(id) } returns blockedDates
+        every { getUnavailableDateUsecase.findPropertyWithoutPeriod(id) } returns blockedDates
         val result = bookingController.getBusyDates(id, null, null)
 
         assertEquals(blockedDates, result)

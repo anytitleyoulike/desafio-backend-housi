@@ -26,7 +26,7 @@ class BookingController(val getUnavailableDateUsecase: GetUnavailableDateUsecase
             if (searchPeriod.start.isAfter(searchPeriod.end)) throw LocalDateException("End date cannot be smaller than start")
             return getUnavailableDateUsecase.findByPeriod(id, searchPeriod)
         }
-        return getUnavailableDateUsecase.findAll(id)
+        return getUnavailableDateUsecase.findPropertyWithoutPeriod(id)
     }
 
     @GetMapping("/{id}")

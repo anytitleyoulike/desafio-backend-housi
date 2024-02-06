@@ -9,5 +9,5 @@ interface GetUnavailableDateUsecase {
 
     fun findByPeriod(propertyId: String, searchPeriod: SearchPeriodDTO): List<LocalDate>
     fun findById(propertyId: String): List<Booking>
-    fun findAll(propertyId: String): List<LocalDate>
+    fun findPropertyWithoutPeriod(propertyId: String): List<LocalDate>
 }

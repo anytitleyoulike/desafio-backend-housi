@@ -29,7 +29,7 @@ class BookingService(private val bookingRepositoryPort: BookingRepositoryPort): 
         return bookingRepositoryPort.findByPropertyId(propertyId)
     }
 
-    override fun findAll(propertyId: String): List<LocalDate> {
+    override fun findPropertyWithoutPeriod(propertyId: String): List<LocalDate> {
         val blockedDates = mutableSetOf<LocalDate>()
         val bookings = bookingRepositoryPort.findByPropertyId(propertyId)
 
