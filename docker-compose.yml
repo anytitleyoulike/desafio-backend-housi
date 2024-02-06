@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - ./seed.json:/data/db/seed.json
+    ports:
+      - 27017:27017
+  data-populator:
+    build:
+      context: .
+      dockerfile: Dockerfile-mongo
+    depends_on:
+      - mongodb
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
