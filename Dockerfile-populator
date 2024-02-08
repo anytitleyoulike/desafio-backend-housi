@@ -1,3 +1,5 @@
 FROM mongo
 
+COPY seed.json /data/db/seed.json
+
 CMD mongoimport --host mongodb --db local --collection booking --type json --file /data/db/seed.json --jsonArray
