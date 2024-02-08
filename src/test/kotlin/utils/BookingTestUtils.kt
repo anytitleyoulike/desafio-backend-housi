@@ -46,4 +46,23 @@ object BookingTestUtils
          )
      }
 
+     fun getListOfBookingsSinceToday(): List<Booking> {
+         val anotherBooking = getBooking().copy(
+             checkIn = LocalDate.now(),
+             checkOut = LocalDate.now().plusDays(5)
+         )
+         return listOf(getBooking(), anotherBooking)
+     }
+
+     fun getBlockedDatesSinceToday(): List<LocalDate> {
+         var currentDate = LocalDate.now()
+         val plusDate = currentDate.plusDays(5)
+         val blockedDates = mutableListOf<LocalDate>()
+         while (currentDate <= plusDate) {
+             blockedDates.add(currentDate)
+             currentDate = currentDate.plusDays(1)
+         }
+         return blockedDates
+     }
+
 }

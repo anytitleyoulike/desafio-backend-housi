@@ -33,13 +33,15 @@ class BookingService(private val bookingRepositoryPort: BookingRepositoryPort): 
         val blockedDates = mutableSetOf<LocalDate>()
         val bookings = bookingRepositoryPort.findByPropertyId(propertyId)
 
-        var startDate: LocalDate
+        var currentDate: LocalDate = LocalDate.now()
         for (booking in bookings) {
-            startDate = booking.checkIn
-            while (startDate <= booking.checkOut) {
-                blockedDates.add(startDate)
-                startDate = startDate.plusDays(1)
+            while (currentDate <= booking.checkOut) {
+                if(currentDate >= booking.checkIn && currentDate <= booking.checkOut) {
+                    blockedDates.add(currentDate)
+                }
+                currentDate = currentDate.plusDays(1)
             }
+
         }
         return blockedDates.sorted()
     }
