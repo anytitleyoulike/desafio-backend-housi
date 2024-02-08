@@ -10,6 +10,97 @@ This project requires Docker to be installed on your computer.
 project starts on: http://localhost:3000 and the
 collections with endpoints is on assets folder.
 
+## Endpoints
+### 1.  GET    /properties/{id}/busy-dates
+#### Response:
+```json
+[
+    "2024-01-05",
+    "2024-01-06",
+    "2024-01-08",
+    "2024-01-07",
+    "2024-01-09",
+    "2024-01-10",
+    "2024-01-11",
+    "2024-01-12",
+    "2024-01-13",
+    "2024-01-14",
+    "2024-01-15",
+    "2024-01-16",
+    "2024-01-17"
+    ...
+]
+```
+
+### 2. GET /properties/{id}/busy-dates/start=?&end=?
+
+#### Response:
+```json
+[
+  "2024-04-28",
+  "2024-04-29",
+  "2024-04-30",
+  "2024-05-01",
+  "2024-05-02",
+  "2024-05-03",
+  "2024-05-04",
+  "2024-05-05",
+  "2024-05-06",
+  "2024-05-07",
+  "2024-05-08",
+  "2024-05-09",
+  "2024-05-10"
+]
+```
+
+### 3. /properties/{id}
+
+#### Response: 
+```json
+[
+  {
+    "id": "65b432ae59bfacb3ffc4b0ba",
+    "property": {
+      "id": "56b3aa2578dc1a90d3de53ee",
+      "name": "Unidade 2"
+    },
+    "checkIn": "2024-05-01",
+    "checkOut": "2024-05-02",
+    "residents": [
+      {
+        "userId": "45b3aa2578dc1a90d3de53ee",
+        "name": "Morador 1",
+        "email": "morador1@email.com",
+        "phone": "(11) 99999-9999"
+      }
+    ]
+  },
+  {
+    "id": "65b432ae59bfacb3ffc4b0bb",
+    "property": {
+      "id": "56b3aa2578dc1a90d3de53ee",
+      "name": "Unidade 2"
+    },
+    "checkIn": "2024-07-01",
+    "checkOut": "2024-12-10",
+    "residents": [
+      {
+        "userId": "45b3aa2578dc1a90d3de53ee",
+        "name": "Morador 1",
+        "email": "morador1@email.com",
+        "phone": "(11) 99999-9999"
+      }
+    ]
+  }
+]
+
+
+```
+
+
+
+
+
 <div align="center">
   <img
     src="assets/banner.png"
