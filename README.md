@@ -12,6 +12,10 @@ collections with endpoints is on assets folder.
 
 ## Endpoints
 ### 1.  GET    /properties/{id}/busy-dates
+#### Request:
+```curl
+curl --location 'http://localhost:3000/properties/56b3aa2578dc1a90d3de53ee/busy-dates
+```
 #### Response:
 ```json
 [
@@ -33,6 +37,10 @@ collections with endpoints is on assets folder.
 ```
 
 ### 2. GET /properties/{id}/busy-dates/start=?&end=?
+#### Request:
+```curl
+curl --location 'http://localhost:3000/properties/56b3aa2578dc1a90d3de53ee/busy-dates?start=2024-01-02&end=2024-05-25'
+```
 
 #### Response:
 ```json
@@ -54,7 +62,10 @@ collections with endpoints is on assets folder.
 ```
 
 ### 3. /properties/{id}
-
+#### Request:
+```curl
+ curl --location 'http://localhost:3000/properties/56b3aa2578dc1a90d3de53ee'
+```
 #### Response: 
 ```json
 [
