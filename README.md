@@ -1,3 +1,15 @@
+## Housi Challenger
+
+### Getting Started
+This project requires Docker to be installed on your computer. 
+### How to Run
+#### Steps
+- `git clone https://github.com/anytitleyoulike/desafio-backend-housi.git`
+- `docker compose up`
+
+project starts on: http://localhost:3000 and the
+collections with endpoints is on assets folder.
+
 <div align="center">
   <img
     src="assets/banner.png"
