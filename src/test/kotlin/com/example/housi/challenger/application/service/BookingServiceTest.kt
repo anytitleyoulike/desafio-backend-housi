@@ -30,14 +30,14 @@ class BookingServiceTest {
 
     @Test
     fun `Should get blocked dates without date provided`(){
-        every { bookingRepositoryPort.findByPropertyId(id) } returns listOfBookingsSinceToday
+        every { bookingRepositoryPort.findByPropertyIdOrderByCheckInAsc(id) } returns listOfBookingsSinceToday
         val result = bookingService.findPropertyWithoutPeriod(id)
 
         assertEquals(result, blockedDatesSinceToday)
     }
     @Test
     fun `Should get booking by id with success`() {
-        every { bookingRepositoryPort.findByPropertyId(id) } returns listOfBookings
+        every { bookingRepositoryPort.findByPropertyIdOrderByCheckInAsc(id) } returns listOfBookings
 
         val result = bookingService.findById(id)
         assertEquals(result, listOfBookings)

@@ -26,14 +26,14 @@ class BookingService(private val bookingRepositoryPort: BookingRepositoryPort): 
     }
 
     override fun findById(propertyId: String): List<Booking> {
-        return bookingRepositoryPort.findByPropertyId(propertyId)
+        return bookingRepositoryPort.findByPropertyIdOrderByCheckInAsc(propertyId)
     }
 
     override fun findPropertyWithoutPeriod(propertyId: String): List<LocalDate> {
         val blockedDates = mutableSetOf<LocalDate>()
-        val bookings = bookingRepositoryPort.findByPropertyId(propertyId)
 
         var currentDate: LocalDate = LocalDate.now()
+        val bookings = bookingRepositoryPort.findByPropertyIdOrderByCheckInAsc(propertyId)
         for (booking in bookings) {
             while (currentDate <= booking.checkOut) {
                 if(currentDate >= booking.checkIn && currentDate <= booking.checkOut) {
